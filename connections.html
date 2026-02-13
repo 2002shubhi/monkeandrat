@@ -243,6 +243,10 @@
         solvedCount++;
         if (solvedCount === Object.keys(categories).length) {
           document.getElementById("winModal").style.display = "flex";
+          // Show the win modal after 5 seconds 
+          setTimeout(() => { 
+            document.getElementById("winModal").style.display = "flex";
+          }, 5000);
         }
       } else {
         message.textContent = "❌ Not a valid group!";
@@ -267,4 +271,5 @@
   </script>
 </body>
 </html>
+
 
