@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>💘 Crossword 💘</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@400;600&display=swap');
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #ffe6f0, #fff0f5);
+      color: #b3003b;
+      text-align: center;
+      margin: 0;
+      padding: 30px;
+      overflow-x: hidden;
+    }
+    h1 {
+      font-family: 'Pacifico', cursive;
+      font-size: 3em;
+      margin-bottom: 20px;
+      color: #e63950;
+      text-shadow: 2px 2px #fff;
+    }
+    iframe {
+      border: 4px solid #ff4d6d;
+      margin: auto;
+      display: block;
+      border-radius: 20px;
+      width: 900px;
+      height: 750px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+    }
+    .finish-btn {
+      margin-top: 25px;
+      padding: 14px 28px;
+      background: #ff4d6d;
+      color: white;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      font-size: 1.2em;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+    .finish-btn:hover { background: #e63950; }
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.5);
+      justify-content: center; align-items: center;
+      z-index: 2;
+    }
+    .modal-content {
+      background: #fff0f5;
+      padding: 40px;
+      border-radius: 20px;
+      text-align: center;
+      box-shadow: 0 0 25px rgba(0,0,0,0.3);
+      animation: pop 0.4s ease;
+    }
+    .modal-content h2 { color: #b3003b; font-size: 2.2em; margin-bottom: 15px; }
+    .modal-content p { font-size: 1.2em; color: #d6336c; }
+    .modal-content button {
+      margin-top: 20px; padding: 12px 24px;
+      background: #ff4d6d; color: white; border: none;
+      border-radius: 30px; cursor: pointer; font-size: 1.1em; font-weight: bold;
+    }
+    .modal-content button:hover { background: #e63950; }
+    @keyframes pop { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+
+    /* Lego Heart styling */
+    #lego-heart-left, #lego-heart-right {
+      position: fixed;
+      bottom: 20px;
+      width: 210px;
+      display: grid;
+      grid-template-columns: repeat(7, 30px);
+      grid-template-rows: repeat(6, 30px);
+      gap: 4px;
+      z-index: 3;
+    }
+    #lego-heart-left { left: 20px; }
+    #lego-heart-right { right: 20px; }
+
+    .brick {
+      width: 30px;
+      height: 30px;
+      background: #ff4d6d;
+      border-radius: 4px;
+      box-shadow: inset -2px -2px 4px rgba(0,0,0,0.2);
+      opacity: 0;
+      transform: scale(0.5);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+    .brick.show {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    /* Speech bubbles */
+    #speech-bubbles {
+      position: fixed;
+      bottom: 40px;
+      width: 100%;
+      pointer-events: none;
+      z-index: 4;
+    }
+    .bubble {
+      max-width: 280px;
+      padding: 12px 18px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 1em;
+      color: #b3003b;
+      background: #fff0f5;
+      border: 2px solid #ff4d6d;
+      border-radius: 20px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      opacity: 0;
+      position: absolute;
+      animation: floatUp 6s ease forwards;
+    }
+    .bubble.left { left: 40px; }
+    .bubble.right { right: 40px; }
+
+    .bubble.left::after {
+      content: "";
+      position: absolute;
+      bottom: -10px;
+      left: 20px;
+      border: 12px solid transparent;
+      border-top-color: #fff0f5;
+      border-left-color: #fff0f5;
+    }
+    .bubble.right::after {
+      content: "";
+      position: absolute;
+      bottom: -10px;
+      right: 20px;
+      border: 12px solid transparent;
+      border-top-color: #fff0f5;
+      border-right-color: #fff0f5;
+    }
+
+    .bubble:nth-child(1) { animation-delay: 0s; }
+    .bubble:nth-child(2) { animation-delay: 3s; }
+    .bubble:nth-child(3) { animation-delay: 6s; }
+
+    @keyframes floatUp {
+      0% { transform: translateY(0); opacity: 0; }
+      10% { opacity: 1; }
+      80% { opacity: 1; }
+      100% { transform: translateY(-250px); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+  <h1>💘 XOXO Crossword 💘</h1>
+
+  <!-- Embedded CrosswordLabs puzzle -->
+  <iframe src="https://crosswordlabs.com/embed/2026-02-08-33"></iframe>
+
+  <!-- Finish button -->
+  <button class="finish-btn" onclick="showWin()">nenu gelichanu shawty</button>
+
+  <!-- Win Modal -->
+  <div id="winModal" class="modal">
+    <div class="modal-content">
+      <h2>💘 damn shawty u too damn smart 💘</h2>
+      <p>ready for your next task fine shyt?</p>
+      <button onclick="goToConnections()">Go to Connections 💝</button>
+    </div>
+  </div>
+
+  <!-- Lego Hearts Container -->
+  <div id="lego-heart-left"></div>
+  <div id="lego-heart-right"></div>
+
+  <!-- Speech Bubbles Container -->
+  <div id="speech-bubbles">
+    <div class="bubble left">“Do you know where I could get one of those gold necklaces with the 'T' on it?”</div>
+    <div class="bubble right">“That's a cross.”</div>
+    <div class="bubble left">“Across from where?”</div>
+  </div>
+
+  <script>
+    // Lego Heart pattern
+    const heartPattern = [
+      [0,1,1,0,1,1,0],
+      [1,1,1,1,1,1,1],
+      [1,1,1,1,1,1,1],
+      [0,1,1,1,1,1,0],
+      [0,0,1,1,1,0,0],
+      [0,0,0,1,0,0,0]
+    ];
+
+    function buildHeart(containerId) {
+      const container = document.getElementById(containerId);
+      const bricks = [];
+      heartPattern.forEach(row => {
+        row.forEach(val => {
+          if (val === 1) {
+            const brick = document.createElement("div");
+            brick.className = "brick";
+            container.appendChild(brick);
+            bricks.push(brick);
+          } else {
+            const spacer = document.createElement("div");
+            spacer.style.width = "30px";
+            spacer.style.height = "30px";
+            container.appendChild(spacer);
+          }
+        });
+      });
+      let i = 0;
+      function animateHeart() {
+        if (i < bricks.length) {
+          bricks[i].classList.add("show");
+          i++;
+          setTimeout(animateHeart, 250);
+        }
+      }
+      animateHeart();
+    }
+
+    buildHeart("lego-heart-left");
+    buildHeart("lego-heart-right");
+  </script>
+
+  <!-- Confetti + Win functions -->
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+<script>
+  function showWin() {
+    document.getElementById("winModal").style.display = "flex";
+    confetti({
+      particleCount: 200,
+      spread: 90,
+      origin: { y: 0.6 },
+      colors: ['#ff4d6d','#ff99ac','#ffe6f0']
+    });
+  }
+
+  function goToConnections() {
+    window.location.href = "connections.html";
+  }
+</script>
+</body>
+</html>
+
+
+
+
+

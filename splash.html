@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Netflix Intro</title>
+  <style>
+    body {
+      margin: 0;
+      background: black;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    #clickToPlay {
+      position: absolute;
+      bottom: 40px;
+      color: #e50914;
+      font-size: 1.2em;
+      cursor: pointer;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <!-- Local video -->
+  <video id="introVideo" autoplay playsinline>
+    <source src="video.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+
+  <div id="clickToPlay">▶ allow me to speak</div>
+
+  <script>
+    const vid = document.getElementById('introVideo');
+    const clickMsg = document.getElementById('clickToPlay');
+
+    // Try autoplay with sound
+    vid.muted = false;
+    vid.play().catch(() => {
+      // If browser blocks autoplay with sound, show click message
+      clickMsg.style.display = 'block';
+    });
+
+    // Allow user to click to start with sound
+    clickMsg.onclick = () => {
+      vid.play();
+      clickMsg.style.display = 'none';
+    };
+
+    // Redirect when video ends
+    vid.onended = () => {
+      window.location.href = "netflix.html";
+    };
+  </script>
+</body>
+</html>
+

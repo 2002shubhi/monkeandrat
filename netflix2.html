@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Netflix Landing</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Helvetica, Arial, sans-serif;
+      color: #fff;
+      background: url('bkg.jpg') no-repeat center center fixed;
+      background-size: cover;
+    }
+    /* Semi-transparent overlay to darken background */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(20,20,20,0.85);
+      z-index: -1;
+    }
+    header {
+      padding: 20px;
+      display: flex;
+      align-items: center;
+    }
+    header img {
+      height: 40px;
+    }
+    .row {
+      margin: 30px 20px;
+    }
+    .row h2 {
+      margin-bottom: 10px;
+      font-size: 1.4em;
+    }
+    .tiles {
+      display: flex;
+      overflow-x: auto;
+      gap: 12px;
+      padding-bottom: 10px;
+    }
+    .tile {
+      position: relative;
+      min-width: 200px;
+      height: 300px;
+      border-radius: 6px;
+      flex-shrink: 0;
+      background-size: cover;
+      background-position: center;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+    .tile:hover {
+      transform: scale(1.08);
+    }
+    .tile-number {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      font-size: 2em;
+      font-weight: bold;
+      color: #e50914;
+      text-shadow: 2px 2px 4px #000;
+    }
+    .tile-title {
+      position: absolute;
+      bottom: 10px;
+      left: 10px;
+      right: 10px;
+      font-size: 1em;
+      background: rgba(0,0,0,0.6);
+      padding: 5px;
+      border-radius: 4px;
+    }
+    del {
+      color: #aaa;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="netflix.png" alt="Netflix Logo">
+  </header>
+
+  <div class="row">
+    <h2>Romance</h2>
+    <div class="tiles">
+      <div class="tile" style="background-image:url('h.jpg');" onclick="location.href='https://monkeandrat.my.canva.site/'">
+        <span class="tile-number">1</span>
+        <div class="tile-title">How I met my rat</div>
+      </div>
+      <div class="tile" style="background-image:url('b.jpg');" onclick="location.href='https://monkeandrat.my.canva.site/our-dates'">
+        <span class="tile-number">2</span>
+        <div class="tile-title">500 <del>Days</del> Dates of <del>Summer</del> Winter</div>
+      </div>
+      <div class="tile" style="background-image:url('c.jpg');" onclick="location.href='https://monkeandrat.my.canva.site/coupons'">
+        <span class="tile-number">3</span>
+        <div class="tile-title">Confessions of a <del>Shopaholic</del> Couponholic</div>
+      </div>
+      <div class="tile" style="background-image:url('d.jpg');" onclick="location.href='https://monkeandrat.my.canva.site/10reasonswhyily'">
+        <span class="tile-number">4</span>
+        <div class="tile-title">10 Things I <del>Hate</del> Love About You</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <h2>Adventures</h2>
+    <div class="tiles">
+      <div class="tile" style="background-image:url('e.jpg');" onclick="location.href='hi.html'">
+        <span class="tile-number">5</span>
+        <div class="tile-title">People We Meet on <del>Vacations</del> Campus</div>
+      </div>
+      <div class="tile" style="background-image:url('f.jpg');" onclick="location.href='https://www.wattpad.com/story/407799630?utm_source=ios&utm_medium=link&utm_content=story_info&wp_page=story_details&wp_uname=milfwhisperer6969'">
+        <span class="tile-number">6</span>
+        <div class="tile-title">Heated Professory</div>
+      </div>
+      <div class="tile" style="background-image:url('g.jpg');" onclick="location.href='https://monkeandrat.my.canva.site/lettersforjuliet'">
+        <span class="tile-number">7</span>
+        <div class="tile-title">Letters to <del>Juliet</del> Rat</div>
+      </div>
+      <div class="tile" style="background-image:url('ab.jpg');" onclick="location.href='https://open.spotify.com/playlist/47NBqJ8MDkMqTbucXxf4Yr?si=4FK9_yqpSu29YDFYZhdTug&pi=Xc2GoMZVRHaag'">
+        <span class="tile-number">8</span>
+        <div class="tile-title">DJ <del>Tillu</del> Strawbie</div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
+
+

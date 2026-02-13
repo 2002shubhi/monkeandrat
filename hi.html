@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>💖 Our Memories Map 💖</title>
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', cursive, sans-serif;
+      color: #b3003b;
+      text-align: center;
+
+      /* Collage background using your GIF */
+      background: url('house-md-love.gif') repeat;
+      background-size: 300px 300px; /* adjust tile size for collage effect */
+      position: relative;
+    }
+
+    /* Semi-transparent pink overlay to soften the collage */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(255, 192, 203, 0.6);
+      z-index: -1;
+    }
+
+    h1 {
+      margin: 20px;
+      font-size: 2.5em;
+      color: #800000;
+      text-shadow: 2px 2px 6px rgba(255, 105, 180, 0.6);
+    }
+
+    #map {
+      height: 600px;
+      width: 90%;
+      margin: auto;
+      border: 6px solid #ff4d6d;
+      border-radius: 30px;
+      box-shadow: 0 0 25px rgba(255, 105, 180, 0.5),
+                  0 0 50px rgba(255, 182, 193, 0.4);
+      position: relative;
+      animation: sparkle 3s infinite;
+    }
+
+    .leaflet-popup-content {
+      font-family: 'Poppins', sans-serif;
+      color: #b3003b;
+      font-size: 1.1em;
+    }
+
+    /* Sparkle animation around map */
+    @keyframes sparkle {
+      0% { box-shadow: 0 0 15px rgba(255, 105, 180, 0.6); }
+      50% { box-shadow: 0 0 35px rgba(255, 182, 193, 0.8); }
+      100% { box-shadow: 0 0 15px rgba(255, 105, 180, 0.6); }
+    }
+  </style>
+</head>
+<body>
+  <h1>💘 Everything, everywhere, all at once – BITS Goa edition 💘</h1>
+  <div id="map"></div>
+
+  <!-- Leaflet JS -->
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script>
+    // Initialize map centered on BITS Goa
+    const map = L.map('map').setView([15.391, 73.878], 16);
+
+    // Add OpenStreetMap tiles
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
+
+    // Custom heart icon
+    const heartIcon = L.divIcon({
+      html: "💖",
+      className: "",
+      iconSize: [30, 30],
+      iconAnchor: [15, 15]
+    });
+
+    // Memory markers
+    L.marker([15.391997, 73.879817], {icon: heartIcon}).addTo(map).bindPopup("Where shoebee met saki 💕");
+    L.marker([15.391257, 73.880428], {icon: heartIcon}).addTo(map).bindPopup("Birth of the rizzketh 🌸");
+    L.marker([15.390114, 73.875632], {icon: heartIcon}).addTo(map).bindPopup("Where you asked me out ✨");
+    L.marker([15.392752, 73.880374], {icon: heartIcon}).addTo(map).bindPopup("Coffee after class 💕");
+    L.marker([15.392064, 73.875482], {icon: heartIcon}).addTo(map).bindPopup("Ur honour I have never seen this place before in my life 🌸");
+    L.marker([15.389783, 73.876099], {icon: heartIcon}).addTo(map).bindPopup("Cutie patootie hyderbaddies in ur area ✨");
+    L.marker([15.389882, 73.878347], {icon: heartIcon}).addTo(map).bindPopup("Where you would walk me to💕");
+    L.marker([15.392328, 73.881007], {icon: heartIcon}).addTo(map).bindPopup("Convocation w you 🌸");
+    L.marker([15.391495, 73.877810], {icon: heartIcon}).addTo(map).bindPopup("Premarital plate sharing and white lotus nerdouts✨");
+    L.marker([15.391707, 73.881007], {icon: heartIcon}).addTo(map).bindPopup("Where you got caught simping over me ✨");
+    L.marker([15.392545, 73.880149], {icon: heartIcon}).addTo(map).bindPopup("Where I spent an hour explaining morjim beach turtles to u ✨");
+    L.marker([15.2677, 73.9268], {icon: heartIcon}).addTo(map).bindPopup("Goodfellas was good but the bubblegum was so freaking bad ✨");
+    L.marker([15.1317, 74.249088], {icon: heartIcon}).addTo(map).bindPopup("Only good thing about this trek was being here with you✨");
+    L.marker([15.1006,73.9261], {icon: heartIcon}).addTo(map).bindPopup("Rum pancakes and the beach✨");
+    L.marker([15.4981,73.8344], {icon: heartIcon}).addTo(map).bindPopup("First movie with you (and the others but also YOU) ✨");
+
+    // Click event to grab coordinates and drop a temporary heart marker
+    map.on('click', function(e) {
+      const lat = e.latlng.lat.toFixed(6);
+      const lng = e.latlng.lng.toFixed(6);
+      alert("Coordinates: " + lat + ", " + lng);
+      console.log("Clicked at:", lat, lng);
+
+      // Drop a temporary marker at clicked location
+      L.marker([lat, lng], {icon: heartIcon}).addTo(map).bindPopup("💘 New memory spot 💘").openPopup();
+    });
+  </script>
+</body>
+</html>
+

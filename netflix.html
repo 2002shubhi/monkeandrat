@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Ratflix Profiles</title>
+  <style>
+    body {
+      margin: 0;
+      background-color: #141414; /* Netflix dark background */
+      font-family: Helvetica, Arial, sans-serif;
+      color: #fff;
+      text-align: center;
+    }
+    .logo-banner {
+      width: 100%;
+      background-color: #141414; /* match body background */
+      padding: 20px 0;
+    }
+    .logo-banner img {
+      max-width: 400px;
+      width: 100%;
+    }
+    header {
+      padding: 40px 0 20px;
+      font-size: 3em; /* bigger */
+      font-weight: bold;
+      color: #fff;
+    }
+    .profiles {
+      display: flex;
+      justify-content: center;
+      gap: 60px;
+      margin-top: 40px;
+    }
+    .profile {
+      cursor: pointer;
+      text-align: center;
+    }
+    .profile img {
+      width: 160px;
+      height: 160px;
+      border-radius: 4px;
+      border: 3px solid transparent;
+      transition: border 0.3s, transform 0.3s;
+    }
+    .profile img:hover {
+      border: 3px solid #fff;
+      transform: scale(1.05);
+    }
+    .profile p {
+      margin-top: 12px;
+      font-size: 1.2em;
+    }
+    #mouseContent {
+      display: none;
+      margin-top: 50px;
+    }
+    #mouseContent img {
+      width: 500px;
+      border-radius: 8px;
+    }
+    .back-btn {
+      margin-top: 20px;
+      font-size: 1.1em;
+      color: #e50914;
+      cursor: pointer;
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <!-- Netflix logo banner -->
+  <div class="logo-banner">
+    <img src="netflix.png" alt="Netflix Logo">
+  </div>
+
+  <header>Who's Watching?</header>
+
+  <div class="profiles">
+    <!-- Mouse profile -->
+    <div class="profile" onclick="showMouse()">
+      <img src="monke.jpg" alt="Mouse Profile">
+      <p>Monke</p>
+    </div>
+    <!-- Rat profile -->
+    <div class="profile" onclick="location.href='netflix2.html'">
+      <img src="rat.jpg" alt="Rat Profile">
+      <p>Rat</p>
+    </div>
+  </div>
+
+  <!-- Mouse content -->
+  <div id="mouseContent">
+    <img src="the-office-dwight.gif" alt="Identity Theft is not a joke Jim">
+    <div class="back-btn" onclick="hideMouse()">Back to Profiles</div>
+  </div>
+
+  <script>
+    function showMouse() {
+      document.querySelector('.profiles').style.display = 'none';
+      document.getElementById('mouseContent').style.display = 'block';
+    }
+    function hideMouse() {
+      document.querySelector('.profiles').style.display = 'flex';
+      document.getElementById('mouseContent').style.display = 'none';
+    }
+  </script>
+</body>
+</html>
